@@ -21,7 +21,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-x-hidden border-b border-slate-800 bg-gradient-to-b from-slate-950 via-slate-950 to-black"
+      className="relative overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-950 via-slate-950 to-black"
     >
       <div
         aria-hidden="true"
@@ -32,10 +32,10 @@ export default function HeroSection() {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-[-180px] h-80 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent blur-3xl"
+        className="pointer-events-none absolute inset-x-0 bottom-[-90px] h-40 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent blur-3xl"
       />
 
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-10 px-4 pb-8 pt-8 sm:px-6 md:px-10 md:pb-12 md:pt-14 lg:flex-row lg:items-center lg:gap-12">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-3 pb-2 pt-10 sm:px-4 md:flex-row md:items-center md:gap-10 md:pb-4 md:pt-12 lg:px-6 xl:px-8">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          <h1 className="mt-5 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+          <h1 className="mt-5 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-[68px] lg:leading-[1.02]">
             Turn{" "}
             <span className="text-orange-500">Every Enterprise Call</span> Into
             a Closed Deal - Automatically.
@@ -104,7 +104,7 @@ export default function HeroSection() {
             ))}
           </div>
 
-          <p className="mt-4 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
+          <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
             Integrates seamlessly with your existing CRM, dialer & lead stack —
             zero infrastructure changes, zero disruption to your current
             workflow.
@@ -117,7 +117,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           className="relative z-10 flex-1"
         >
-          <div className="mx-auto w-full max-w-sm rounded-3xl border border-slate-800 bg-slate-900/60 p-4 shadow-[0_0_60px_rgba(15,23,42,0.9)] backdrop-blur sm:max-w-md sm:p-5">
+          <div className="mx-auto w-full max-w-sm rounded-3xl border border-slate-800 bg-slate-900/60 p-4 shadow-[0_0_60px_rgba(15,23,42,0.9)] backdrop-blur sm:max-w-md sm:p-5 lg:max-w-[520px]">
             <div className="mb-4 flex items-start justify-between gap-3">
               <div className="flex min-w-0 items-start gap-2">
                 <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500/20 text-xs font-semibold text-orange-300">

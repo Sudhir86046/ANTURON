@@ -54,10 +54,10 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-black/95 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:gap-6 md:py-4">
         <Link
           href="/"
-          className="flex min-w-0 flex-1 items-center gap-3"
+          className="flex min-w-0 shrink-0 flex-col items-start"
           onClick={() => {
             setIsOpen(false);
             setIsPlaygroundOpen(false);
@@ -66,20 +66,15 @@ export default function Navbar() {
           <img
             src="/Logo.jpg"
             alt="Anturon Logo"
-            className="h-9 w-auto shrink-0 object-contain sm:h-10"
+            className="h-9 w-auto object-contain sm:h-10"
           />
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white sm:text-base">
-              Anturon
-            </p>
-            <span className="block truncate text-[10px] tracking-wide text-slate-400 sm:text-[11px]">
-              Every Call, Every Lead, Fully Automated
-            </span>
-          </div>
+          <span className="mt-1 text-[10px] leading-tight tracking-wide text-slate-400 sm:text-[11px]">
+            Every Call, Every Lead, Fully Automated
+          </span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          <div className="flex items-center gap-6">
+        <div className="hidden flex-1 items-center justify-center md:flex">
+          <div className="flex items-center gap-8 lg:gap-10">
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
@@ -122,7 +117,9 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
+        </div>
 
+        <div className="hidden shrink-0 md:block">
           <Link
             href="/dashboard-access"
             className="rounded-full bg-orange-500 px-6 py-2 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 lg:px-10"
