@@ -80,26 +80,29 @@ export default function DemoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-12 text-white">
+    <main className="min-h-screen overflow-x-hidden bg-slate-950 px-4 py-10 text-white sm:px-6 sm:py-12">
       <section className="mx-auto max-w-5xl">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-orange-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400 sm:text-sm">
             Demo
           </p>
-          <h1 className="text-4xl font-bold md:text-5xl">
+
+          <h1 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
             Book a live demo of Anturon
           </h1>
-          <p className="mt-4 text-lg text-slate-300">
+
+          <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
             See how AI voice agents handle campaigns, qualify leads, and push
             structured results to your team.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
-            <p className="text-sm uppercase tracking-[0.2em] text-orange-400">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 sm:p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-orange-400 sm:text-sm">
               What you will see
             </p>
+
             <div className="mt-5 space-y-3">
               {[
                 "AI calling workflow walkthrough",
@@ -109,7 +112,7 @@ export default function DemoPage() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-slate-300"
+                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm leading-6 text-slate-300 sm:text-base"
                 >
                   {item}
                 </div>
@@ -117,20 +120,22 @@ export default function DemoPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
-            <p className="text-sm uppercase tracking-[0.2em] text-orange-400">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 sm:p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-orange-400 sm:text-sm">
               Request a demo
             </p>
-            <h2 className="mt-3 text-2xl font-bold">
+
+            <h2 className="mt-3 text-xl font-bold sm:text-2xl">
               Let’s show you the workflow live
             </h2>
-            <p className="mt-4 leading-7 text-slate-300">
+
+            <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
               Share your campaign use case, team size, or sales workflow and we
               will tailor the demo around it.
             </p>
 
             {!showPopup && (
-              <form onSubmit={handleSubmit} className="mt-6 space-y-3">
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                 <input
                   type="text"
                   name="name"
@@ -138,7 +143,7 @@ export default function DemoPage() {
                   value={demoForm.name}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-orange-400 sm:text-base"
                 />
 
                 <input
@@ -148,7 +153,7 @@ export default function DemoPage() {
                   value={demoForm.email}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-orange-400 sm:text-base"
                 />
 
                 <input
@@ -158,7 +163,7 @@ export default function DemoPage() {
                   value={demoForm.company}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-orange-400 sm:text-base"
                 />
 
                 <input
@@ -168,7 +173,7 @@ export default function DemoPage() {
                   value={demoForm.phone}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-orange-400 sm:text-base"
                 />
 
                 <textarea
@@ -176,13 +181,13 @@ export default function DemoPage() {
                   placeholder="Tell us about your use case"
                   value={demoForm.message}
                   onChange={handleChange}
-                  className="h-32 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none"
+                  className="h-32 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-orange-400 sm:text-base"
                 />
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-xl bg-orange-500 px-5 py-3 font-semibold text-black hover:bg-orange-400 disabled:opacity-70"
+                  className="w-full rounded-xl bg-orange-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-70 sm:text-base"
                 >
                   {loading ? "Submitting..." : "Request demo"}
                 </button>
@@ -194,17 +199,18 @@ export default function DemoPage() {
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="w-full max-w-sm rounded-2xl border border-slate-800 bg-slate-900 p-6 text-center shadow-lg">
-            <h2 className="text-xl font-bold text-green-400">
+          <div className="w-full max-w-sm rounded-2xl border border-slate-800 bg-slate-900 p-5 text-center shadow-lg sm:p-6">
+            <h2 className="text-xl font-bold text-green-400 sm:text-2xl">
               Demo Request Submitted
             </h2>
-            <p className="mt-3 text-sm text-slate-300">
+
+            <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base">
               Our team will connect with you soon.
             </p>
 
             <button
               onClick={() => setShowPopup(false)}
-              className="mt-5 rounded-lg bg-orange-500 px-4 py-2 font-semibold text-black hover:bg-orange-400"
+              className="mt-5 w-full rounded-xl bg-orange-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 sm:text-base"
             >
               Close
             </button>

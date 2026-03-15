@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Footer from "../../components/Footer";
 
@@ -58,7 +57,7 @@ function MiniFlowCard({
 }) {
   return (
     <div
-      className={`rounded-[20px] border p-4 shadow-[0_0_0_1px_rgba(15,23,42,0.35),0_12px_30px_rgba(0,0,0,0.22)] transition ${
+      className={`rounded-[20px] border p-4 shadow-[0_0_0_1px_rgba(15,23,42,0.35),0_12px_30px_rgba(0,0,0,0.22)] transition sm:p-5 ${
         active
           ? "border-orange-400/70 bg-orange-500/[0.06]"
           : "border-orange-500/25 bg-[#071226]/95"
@@ -101,7 +100,7 @@ function HoverSelectBox({
 
   return (
     <div
-      className="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-orange-400/70"
+      className="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-orange-400/70 sm:p-5"
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
     >
@@ -117,14 +116,14 @@ function HoverSelectBox({
         onClick={() => setOpen((prev) => !prev)}
         className="flex w-full items-center justify-between rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-left transition hover:border-orange-400"
       >
-        <div>
+        <div className="min-w-0">
           <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
             Selected
           </p>
           <p className="mt-1 text-sm font-medium text-white">{value}</p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="ml-3 flex shrink-0 items-center gap-2">
           <span className="text-xs text-slate-400">{open ? "Close" : "Choose"}</span>
           <ChevronIcon open={open} />
         </div>
@@ -152,7 +151,7 @@ function HoverSelectBox({
                       setOpen(false);
                     }
                   }}
-                  className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left transition ${
+                  className={`flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition ${
                     active
                       ? "border-orange-400 bg-orange-500/10"
                       : "border-slate-800 bg-slate-950/70 hover:border-slate-700"
@@ -219,7 +218,7 @@ function PlaygroundSelectBox({
                   setOpen(false);
                 }
               }}
-              className={`flex w-full items-center justify-between rounded-xl border px-3 py-3 text-left transition ${
+              className={`flex w-full items-center justify-between gap-3 rounded-xl border px-3 py-3 text-left transition ${
                 value === option.value
                   ? "border-orange-400 bg-orange-500/10"
                   : "border-slate-800 bg-slate-900/60 hover:border-slate-700"
@@ -251,11 +250,11 @@ function Tile({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-900/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur">
+    <div className="rounded-[24px] border border-slate-800 bg-slate-900/70 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur sm:rounded-[28px] sm:p-6">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-orange-400">
         {sectionLabel}
       </p>
-      <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+      <h2 className="text-xl font-bold leading-tight text-white sm:text-2xl md:text-3xl">
         {title}
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
@@ -269,7 +268,7 @@ function Tile({
 export default function CustomiseAgentPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
- 
+
   const [tone, setTone] = useState("Professional & Formal");
   const [language, setLanguage] = useState("English");
   const [openingLine, setOpeningLine] = useState("Use agent name + company name");
@@ -280,7 +279,7 @@ export default function CustomiseAgentPage() {
   const [routing, setRouting] = useState("Hot → Assign to sales rep immediately");
   const [booking, setBooking] = useState("Yes - book demo if intent is detected");
   const [knowledge, setKnowledge] = useState("Basic product FAQs");
- 
+
   const [topAgentName, setTopAgentName] = useState("Alex");
   const [topLanguage, setTopLanguage] = useState("Hindi");
   const [topPhoneNumber, setTopPhoneNumber] = useState("7464079221");
@@ -309,7 +308,7 @@ export default function CustomiseAgentPage() {
   ];
 
   const languageOptions = [
-    { label: "English"},
+    { label: "English" },
     { label: "Hindi", locked: true },
     { label: "Hinglish (Bilingual)", locked: true },
     { label: "Regional Languages", locked: true },
@@ -339,7 +338,7 @@ export default function CustomiseAgentPage() {
     { label: "Hot → Assign to sales rep immediately" },
     { label: "Warm → Add to nurture sequence" },
     { label: "Cold → Re-engagement campaign" },
-    { label: "Custom routing rules (Full Plan)"},
+    { label: "Custom routing rules (Full Plan)" },
   ];
 
   const bookingOptions = [
@@ -437,10 +436,10 @@ export default function CustomiseAgentPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <section className="px-4 py-12 md:px-8 xl:px-12">
-        <div className="mx-auto grid max-w-7xl gap-8 xl:grid-cols-[1.02fr_0.98fr]">
-          <div className="space-y-8">
+    <main className="min-h-screen overflow-x-hidden bg-slate-950 text-white">
+      <section className="px-4 py-8 sm:px-6 sm:py-10 md:px-8 xl:px-12">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:gap-8 xl:grid-cols-[1.02fr_0.98fr]">
+          <div className="space-y-6 sm:space-y-8">
             <Tile
               sectionLabel="Voice & Behaviour"
               title="Give Your AI Agent a Voice That Sounds Like Your Brand"
@@ -574,13 +573,13 @@ export default function CustomiseAgentPage() {
           </div>
 
           <div className="h-fit xl:sticky xl:top-6">
-            <div className="overflow-hidden rounded-[28px] border border-slate-800 bg-[#030712] shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-              <div className="border-b border-slate-800 px-6 py-6">
+            <div className="overflow-hidden rounded-[24px] border border-slate-800 bg-[#030712] shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:rounded-[28px]">
+              <div className="border-b border-slate-800 px-5 py-5 sm:px-6 sm:py-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-400">
                   Live Agent Playground
                 </p>
 
-                <h2 className="mt-3 text-3xl font-bold leading-tight">
+                <h2 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl">
                   Your Agent Is Ready.
                   <span className="block text-orange-400">Now Hear It Call You.</span>
                 </h2>
@@ -591,7 +590,7 @@ export default function CustomiseAgentPage() {
                 </p>
               </div>
 
-              <div className="relative p-5">
+              <div className="relative p-4 sm:p-5">
                 <div
                   className="absolute inset-0 opacity-25"
                   style={{
@@ -634,11 +633,11 @@ export default function CustomiseAgentPage() {
                       placeholder="e.g. Be professional and friendly. Start by asking if it's a good time to speak..."
                       className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
                     />
-                    <div className="mt-2 flex items-center justify-between">
+                    <div className="mt-2 flex items-center justify-between gap-3">
                       <p className="text-xs text-slate-400">
                         Think of this as your agent&apos;s instruction manual for the call.
                       </p>
-                      <p className="text-xs text-slate-500">{aiPrompt.length}/500</p>
+                      <p className="shrink-0 text-xs text-slate-500">{aiPrompt.length}/500</p>
                     </div>
                   </MiniFlowCard>
 
@@ -646,16 +645,16 @@ export default function CustomiseAgentPage() {
                     <textarea
                       value={agentPurpose}
                       onChange={(e) => setAgentPurpose(e.target.value)}
-                      rows={2}
+                      rows={3}
                       maxLength={300}
                       placeholder="e.g. This agent calls warm leads from our website to qualify them for a product demo."
                       className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
                     />
-                    <div className="mt-2 flex items-center justify-between">
+                    <div className="mt-2 flex items-center justify-between gap-3">
                       <p className="text-xs text-slate-400">
                         This shapes how your agent frames the call objective.
                       </p>
-                      <p className="text-xs text-slate-500">{agentPurpose.length}/300</p>
+                      <p className="shrink-0 text-xs text-slate-500">{agentPurpose.length}/300</p>
                     </div>
                   </MiniFlowCard>
 
@@ -713,27 +712,28 @@ export default function CustomiseAgentPage() {
                   </MiniFlowCard>
 
                   <div className="pt-1">
-  <Link href="/demo">
-    <button
-      type="button"
-      disabled={isSubmitting}
-      className={`flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-slate-950 transition ${
-        isSubmitting
-          ? "cursor-not-allowed bg-orange-300"
-          : "bg-orange-500 hover:bg-orange-400"
-      }`}
-    >
-      {isSubmitting ? (
-        <>
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-900/30 border-t-slate-900" />
-          Processing Setup...
-        </>
-      ) : (
-        "Call Me Now - Start 2-Min Trial"
-      )}
-    </button>
-  </Link>
-</div>
+                    <Link href="/demo">
+                      <button
+                        type="button"
+                        onClick={handleContinueSetup}
+                        disabled={isSubmitting}
+                        className={`flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-slate-950 transition ${
+                          isSubmitting
+                            ? "cursor-not-allowed bg-orange-300"
+                            : "bg-orange-500 hover:bg-orange-400"
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-900/30 border-t-slate-900" />
+                            Processing Setup...
+                          </>
+                        ) : (
+                          "Call Me Now - Start 2-Min Trial"
+                        )}
+                      </button>
+                    </Link>
+                  </div>
 
                   <div className="rounded-2xl border border-orange-500/20 bg-orange-500/5 p-4">
                     <p className="text-sm font-medium text-white">
@@ -748,7 +748,7 @@ export default function CustomiseAgentPage() {
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange-400">
                       Configuration Preview
                     </p>
-                    <h3 className="mt-2 text-xl font-semibold text-white">
+                    <h3 className="mt-2 text-lg font-semibold text-white sm:text-xl">
                       See how customization works in practice
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-400">
@@ -764,7 +764,7 @@ export default function CustomiseAgentPage() {
                           onClick={() => setSelectedImage(src)}
                           className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-left transition duration-300 hover:scale-[1.02] hover:border-orange-400"
                         >
-                          <div className="relative h-36 w-full">
+                          <div className="relative h-40 w-full sm:h-36">
                             <Image
                               src={src}
                               alt={`Customisation preview ${index + 1}`}
@@ -776,6 +776,88 @@ export default function CustomiseAgentPage() {
                       ))}
                     </div>
                   </div>
+
+                  <div className="grid gap-3 border-t border-slate-800 pt-6 sm:grid-cols-2">
+                    <MiniFlowCard title="Company Name">
+                      <input
+                        type="text"
+                        value={topCompany}
+                        onChange={(e) => setTopCompany(e.target.value)}
+                        placeholder="Enter company name"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Industry">
+                      <input
+                        type="text"
+                        value={topIndustry}
+                        onChange={(e) => setTopIndustry(e.target.value)}
+                        placeholder="e.g. Finance"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Team Size">
+                      <input
+                        type="text"
+                        value={topTeamSize}
+                        onChange={(e) => setTopTeamSize(e.target.value)}
+                        placeholder="e.g. 11-50"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Primary Use Case">
+                      <input
+                        type="text"
+                        value={topUseCase}
+                        onChange={(e) => setTopUseCase(e.target.value)}
+                        placeholder="e.g. Appointment Booking"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Campaign Type">
+                      <input
+                        type="text"
+                        value={topCampaignType}
+                        onChange={(e) => setTopCampaignType(e.target.value)}
+                        placeholder="e.g. Outbound Sales"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Monthly Call Volume">
+                      <input
+                        type="text"
+                        value={topCallVolume}
+                        onChange={(e) => setTopCallVolume(e.target.value)}
+                        placeholder="e.g. 1,000-10,000"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="CRM / Lead Source">
+                      <input
+                        type="text"
+                        value={topCrm}
+                        onChange={(e) => setTopCrm(e.target.value)}
+                        placeholder="e.g. HubSpot, Zoho"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+
+                    <MiniFlowCard title="Notes">
+                      <textarea
+                        rows={3}
+                        value={topNotes}
+                        onChange={(e) => setTopNotes(e.target.value)}
+                        placeholder="Add campaign notes..."
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                      />
+                    </MiniFlowCard>
+                  </div>
                 </div>
               </div>
             </div>
@@ -784,11 +866,11 @@ export default function CustomiseAgentPage() {
       </section>
 
       {selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4">
-          <div
-            className="relative h-[80vh] w-full max-w-6xl cursor-pointer"
-            onClick={() => setSelectedImage(null)}
-          >
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative h-[70vh] w-full max-w-6xl sm:h-[80vh]">
             <Image
               src={selectedImage}
               alt="Full preview"

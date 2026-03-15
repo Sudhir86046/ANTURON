@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-type PlaygroundTabId = "how" | "customise" | "roi" | "resources";
+type PlaygroundTabId = "how" | "customise";
 
 const playgroundTabs: { id: PlaygroundTabId; label: string; href: string }[] = [
   { id: "how", label: "How does it work", href: "/playground/how-it-works" },
-  { id: "customise", label: "Customise your agent", href: "/playground/customise-agent" },
+  {
+    id: "customise",
+    label: "Customise your agent",
+    href: "/playground/customise-agent",
+  },
 ];
 
 const navLinks = [
@@ -20,30 +24,63 @@ const mobileNavLinks = [
   { label: "Pricing", href: "/pricing" },
   { label: "Features", href: "/features" },
   { label: "Demo", href: "/demo" },
-  { label: "Dashboard", href:"/dashboard-access" },
+  { label: "Dashboard", href: "/dashboard-access" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaygroundOpen, setIsPlaygroundOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsPlaygroundOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsPlaygroundOpen(false);
+    }
+  }, [isOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-black backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-        <Link href="/" className="flex flex-col items-start leading-tight">
+    <header className="sticky top-0 z-50 border-b border-slate-800 bg-black/95 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:py-4">
+        <Link
+          href="/"
+          className="flex min-w-0 flex-1 items-center gap-3"
+          onClick={() => {
+            setIsOpen(false);
+            setIsPlaygroundOpen(false);
+          }}
+        >
           <img
             src="/Logo.jpg"
             alt="Anturon Logo"
-            className="h-9 w-auto object-contain"
+            className="h-9 w-auto shrink-0 object-contain sm:h-10"
           />
-          <span className="mt-1 whitespace-nowrap text-[11px] tracking-wide text-slate-400">
-            Every Call, Every Lead, Fully Automated
-          </span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-white sm:text-base">
+              Anturon
+            </p>
+            <span className="block truncate text-[10px] tracking-wide text-slate-400 sm:text-[11px]">
+              Every Call, Every Lead, Fully Automated
+            </span>
+          </div>
         </Link>
 
-        <div className="hidden w-full items-center justify-end gap-8 md:flex">
-          <div className="flex flex-1 items-center justify-center gap-6">
-            <div className="relative">
+        <div className="hidden items-center gap-8 md:flex">
+          <div className="flex items-center gap-6">
+            <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setIsPlaygroundOpen((prev) => !prev)}
@@ -60,13 +97,13 @@ export default function Navbar() {
               </button>
 
               {isPlaygroundOpen && (
-                <div className="absolute left-1/2 top-full z-40 mt-1 w-56 -translate-x-1/2 rounded-xl border border-slate-800 bg-slate-950/95 px-3 py-2 shadow-xl">
+                <div className="absolute left-1/2 top-full z-40 mt-3 w-60 -translate-x-1/2 rounded-2xl border border-slate-800 bg-slate-950/95 p-2 shadow-xl">
                   {playgroundTabs.map((t) => (
                     <Link
                       key={t.id}
                       href={t.href}
                       onClick={() => setIsPlaygroundOpen(false)}
-                      className="block w-full whitespace-nowrap rounded-md px-3 py-2 text-left text-xs text-slate-200 transition hover:bg-slate-800 hover:text-orange-400"
+                      className="block rounded-xl px-3 py-2 text-sm text-slate-200 transition hover:bg-slate-800 hover:text-orange-400"
                     >
                       {t.label}
                     </Link>
@@ -86,64 +123,71 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
-           <Link
-  href="/dashboard-access"
-  className="rounded-full bg-orange-500 px-10 py-2 text-sm font-semibold text-slate-950 transition hover:bg-orange-400"
->
-  Dashboard
-</Link>
-          </div>
+          <Link
+            href="/dashboard-access"
+            className="rounded-full bg-orange-500 px-6 py-2 text-sm font-semibold text-slate-950 transition hover:bg-orange-400 lg:px-10"
+          >
+            Dashboard
+          </Link>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-700 text-slate-200 md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/60 text-lg text-slate-200 transition hover:border-slate-500 hover:bg-slate-800 md:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
-          <span className="sr-only">Toggle menu</span>
           {isOpen ? "✕" : "☰"}
         </button>
       </nav>
 
       {isOpen && (
-        <div className="border-t border-slate-800 bg-slate-950 px-4 py-3 md:hidden">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-            Playground
-          </p>
+        <div className="border-t border-slate-800 bg-slate-950 px-4 py-4 shadow-lg md:hidden">
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                Playground
+              </p>
 
-          <ul className="mb-2 space-y-1">
-            {playgroundTabs.map((t) => (
-              <li key={t.id}>
-                <Link
-                  href={t.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full whitespace-nowrap text-left text-xs text-slate-300 hover:text-orange-400"
-                >
-                  • {t.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+              <ul className="mb-4 space-y-1">
+                {playgroundTabs.map((t) => (
+                  <li key={t.id}>
+                    <Link
+                      href={t.href}
+                      onClick={() => setIsOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-sm text-slate-200 transition hover:bg-slate-800 hover:text-orange-400"
+                    >
+                      {t.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-          {mobileNavLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="block py-1.5 text-sm text-slate-200 hover:text-orange-400"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+              <div className="mb-4 border-t border-slate-800 pt-4">
+                <div className="space-y-1">
+                  {mobileNavLinks.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="block rounded-lg px-3 py-2 text-sm text-slate-200 transition hover:bg-slate-800 hover:text-orange-400"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
-          <a
-            href="#book-demo"
-            className="mt-2 inline-flex w-full justify-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-orange-400"
-            onClick={() => setIsOpen(false)}
-          >
-            Book demo
-          </a>
+              <Link
+                href="/demo"
+                className="inline-flex w-full items-center justify-center rounded-full bg-orange-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400"
+                onClick={() => setIsOpen(false)}
+              >
+                Book Demo
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </header>
