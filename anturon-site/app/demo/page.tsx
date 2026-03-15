@@ -31,13 +31,30 @@ export default function DemoPage() {
     try {
       console.log("Submitting demo form:", demoForm);
 
-      const res = await fetch("http://localhost:5000/api/demo-request", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(demoForm),
-});
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://13.63.125.236:5000";
+
+      const res = await fetch(`${apiUrl}/api/demo-request`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(demoForm),
+      });
+
+      const contentType = res.headers.get("content-type");
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error("Server error response:", errorText);
+        throw new Error(`Request failed with status ${res.status}`);
+      }
+
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await res.text();
+        console.error("Non-JSON response received:", text);
+        throw new Error("Server did not return JSON");
+      }
 
       const data = await res.json();
       console.log("Demo response:", data);
@@ -56,7 +73,7 @@ export default function DemoPage() {
       }
     } catch (error) {
       console.error("Demo submit error:", error);
-      alert("Backend connection failed");
+      alert("Form submit failed. Please check backend/API connection.");
     } finally {
       setLoading(false);
     }
