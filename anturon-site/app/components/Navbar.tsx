@@ -68,7 +68,7 @@ export default function Navbar() {
             alt="Anturon Logo"
             className="h-9 w-auto object-contain sm:h-10"
           />
-          <span className="mt-1 text-[10px] leading-tight tracking-wide text-slate-400 sm:text-[11px]">
+          <span className="mt-1 max-w-[170px] text-[10px] leading-tight tracking-wide text-slate-400 sm:max-w-none sm:text-[11px]">
             Every Call, Every Lead, Fully Automated
           </span>
         </Link>

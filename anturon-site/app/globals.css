@@ -10,11 +10,20 @@ html,
 body {
   height: 100%;
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .news-box {
   min-height: 520px;
   overflow: hidden;
@@ -86,7 +95,7 @@ html {
     transform: translateY(-52%);
   }
 }
- 
+
 .logo-scroll {
   width: max-content;
   animation: logoMove 18s linear infinite;
@@ -100,7 +109,7 @@ html {
     transform: translateX(-50%);
   }
 }
- 
+
 .faq-scroll {
   position: relative;
   overflow: hidden;
@@ -123,7 +132,7 @@ html {
     transform: translateY(-50%);
   }
 }
- 
+
 .intro-overlay {
   position: fixed;
   inset: 0;
@@ -188,5 +197,28 @@ html {
   }
   100% {
     transform: translateY(0px) scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .news-box {
+    min-height: auto;
+  }
+
+  .news-scroll {
+    animation-duration: 22s;
+  }
+
+  .faq-track {
+    animation-duration: 32s;
+  }
+
+  @keyframes anturonNewsScroll {
+    0% {
+      transform: translateY(10%);
+    }
+    100% {
+      transform: translateY(-45%);
+    }
   }
 }

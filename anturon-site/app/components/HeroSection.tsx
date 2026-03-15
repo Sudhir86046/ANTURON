@@ -35,9 +35,9 @@ export default function HeroSection() {
         className="pointer-events-none absolute inset-x-0 bottom-[-90px] h-40 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent blur-3xl"
       />
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-3 pb-2 pt-10 sm:px-4 md:flex-row md:items-center md:gap-10 md:pb-4 md:pt-12 lg:px-6 xl:px-8">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 pb-6 pt-10 sm:px-6 md:gap-10 md:pb-8 md:pt-12 lg:flex-row lg:items-center lg:px-8 xl:px-10">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative z-10 flex-1"
@@ -50,16 +50,15 @@ export default function HeroSection() {
           </div>
 
           <h1 className="mt-5 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-[68px] lg:leading-[1.02]">
-            Turn{" "}
-            <span className="text-orange-500">Every Enterprise Call</span> Into
+            Turn <span className="text-orange-500">Every Enterprise Call</span> Into
             a Closed Deal - Automatically.
           </h1>
 
-          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            Anturon&apos;s AI voice agents handle inbound and outbound calls
-            across sales, customer support, BPO, and scheduling - sounding
-            natural, following your playbooks, and syncing live with the CRM.
-            Your team engages only the leads that are ready to close.
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base md:text-lg">
+            Anturon&apos;s AI voice agents handle inbound and outbound calls across
+            sales, customer support, BPO, and scheduling - sounding natural,
+            following your playbooks, and syncing live with the CRM. Your team
+            engages only the leads that are ready to close.
           </p>
 
           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start">
@@ -70,9 +69,7 @@ export default function HeroSection() {
               >
                 Book a Live Demo
               </Link>
-              <span className="mt-2 text-sm text-slate-400">
-                See Agent in Action
-              </span>
+              <span className="mt-2 text-sm text-slate-400">See Agent in Action</span>
             </div>
 
             <div className="flex w-full flex-col items-start sm:w-auto">
@@ -82,9 +79,7 @@ export default function HeroSection() {
               >
                 Start Pilot
               </Link>
-              <span className="mt-2 text-sm text-slate-400">
-                Live in 2-3 days.
-              </span>
+              <span className="mt-2 text-sm text-slate-400">Live in 2-3 days.</span>
             </div>
           </div>
 
@@ -106,14 +101,13 @@ export default function HeroSection() {
 
           <p className="mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:text-sm">
             Integrates seamlessly with your existing CRM, dialer & lead stack —
-            zero infrastructure changes, zero disruption to your current
-            workflow.
+            zero infrastructure changes, zero disruption to your current workflow.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 40, scale: 0.96 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           className="relative z-10 flex-1"
         >

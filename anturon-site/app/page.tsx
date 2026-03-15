@@ -121,6 +121,45 @@ const FlowDotLineV = ({
   </div>
 );
 
+const MobileFlowConnector = ({ delay = 0 }: { delay?: number }) => (
+  <div className="relative mx-auto h-10 w-6">
+    <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 rounded-full bg-slate-700" />
+    <motion.div
+      className="absolute left-1/2 top-1 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-orange-400 shadow-[0_0_12px_rgba(249,115,22,0.9)]"
+      animate={{ y: [0, 26, 0] }}
+      transition={{
+        duration: 1.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    />
+  </div>
+);
+
+const MobileFlowCard = ({
+  title,
+  children,
+  delay = 0,
+}: {
+  title: string;
+  children: React.ReactNode;
+  delay?: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.45, ease: "easeOut", delay }}
+    viewport={{ once: true, amount: 0.15 }}
+    className="rounded-[22px] border border-slate-800 bg-[#071226]/95 p-4 shadow-[0_0_0_1px_rgba(15,23,42,0.45),0_18px_45px_rgba(0,0,0,0.30)]"
+  >
+    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
+      {title}
+    </p>
+    {children}
+  </motion.div>
+);
+
 export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
@@ -148,7 +187,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="min-h-screen overflow-x-hidden bg-slate-950 text-slate-50">
       <HeroSection />
 
       <section id="packages" className="border-t border-slate-800 px-4 py-16">
@@ -566,196 +605,204 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto grid max-w-xl gap-4 px-4 lg:hidden">
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Agent Name
-              </p>
-              <input
-                id="name-mobile"
-                name="name"
-                type="text"
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+          <div className="mx-auto max-w-xl px-4 lg:hidden">
+            <div className="relative rounded-[24px] border border-slate-800 bg-[#030712] p-4 sm:p-5">
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(143, 158, 180, 0.16) 1px, transparent 1px)",
+                  backgroundSize: "16px 16px",
+                }}
               />
-            </div>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Preferred Language
-              </p>
-              <select
-                name="language"
-                value={formData.language}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select language</option>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Bhojpuri">Bhojpuri</option>
-                <option value="Hinglish">Hinglish</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+              <div className="relative z-10">
+                <MobileFlowCard title="Agent Name" delay={0}>
+                  <input
+                    id="name-mobile"
+                    name="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  />
+                </MobileFlowCard>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Phone Number
-              </p>
-              <input
-                id="contact-mobile"
-                name="contact"
-                type="tel"
-                placeholder="Enter phone number"
-                value={formData.contact}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              />
-            </div>
+                <MobileFlowConnector delay={0.1} />
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Company Name
-              </p>
-              <input
-                name="company"
-                type="text"
-                placeholder="Enter company name"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              />
-            </div>
+                <MobileFlowCard title="Preferred Language" delay={0.05}>
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select language</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Bhojpuri">Bhojpuri</option>
+                    <option value="Hinglish">Hinglish</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </MobileFlowCard>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Industry
-              </p>
-              <select
-                name="industry"
-                value={formData.industry}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select industry</option>
-                <option value="Real Estate">Real Estate</option>
-                <option value="EdTech">EdTech</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Finance">Finance</option>
-                <option value="E-commerce">E-commerce</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+                <MobileFlowConnector delay={0.2} />
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Team Size
-              </p>
-              <select
-                name="teamSize"
-                value={formData.teamSize}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select team size</option>
-                <option value="1-10">1-10</option>
-                <option value="11-50">11-50</option>
-                <option value="51-200">51-200</option>
-                <option value="200+">200+</option>
-              </select>
-            </div>
+                <MobileFlowCard title="Phone Number" delay={0.08}>
+                  <input
+                    id="contact-mobile"
+                    name="contact"
+                    type="tel"
+                    placeholder="Enter phone number"
+                    value={formData.contact}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  />
+                </MobileFlowCard>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Primary Use Case
-              </p>
-              <select
-                name="useCase"
-                value={formData.useCase}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select use case</option>
-                <option value="Lead Qualification">Lead Qualification</option>
-                <option value="Appointment Booking">Appointment Booking</option>
-                <option value="Follow-ups">Follow-ups</option>
-                <option value="Customer Support">Customer Support</option>
-                <option value="Collections">Collections</option>
-              </select>
-            </div>
+                <MobileFlowConnector delay={0.3} />
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Campaign Type
-              </p>
-              <select
-                name="campaignType"
-                value={formData.campaignType}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select campaign type</option>
-                <option value="Outbound Sales">Outbound Sales</option>
-                <option value="Inbound Support">Inbound Support</option>
-                <option value="Reminder Calls">Reminder Calls</option>
-                <option value="Survey / Feedback">Survey / Feedback</option>
-              </select>
-            </div>
+                <MobileFlowCard title="Company Name" delay={0.1}>
+                  <input
+                    name="company"
+                    type="text"
+                    placeholder="Enter company name"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  />
+                </MobileFlowCard>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Monthly Call Volume
-              </p>
-              <select
-                name="callVolume"
-                value={formData.callVolume}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              >
-                <option value="">Select call volume</option>
-                <option value="0-1,000">0-1,000</option>
-                <option value="1,000-10,000">1,000-10,000</option>
-                <option value="10,000-50,000">10,000-50,000</option>
-                <option value="50,000+">50,000+</option>
-              </select>
-            </div>
+                <MobileFlowConnector delay={0.4} />
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                CRM / Lead Source
-              </p>
-              <input
-                name="crm"
-                type="text"
-                placeholder="Eg. HubSpot, Zoho, Salesforce"
-                value={formData.crm}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              />
-            </div>
+                <MobileFlowCard title="Industry" delay={0.12}>
+                  <select
+                    name="industry"
+                    value={formData.industry}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select industry</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="EdTech">EdTech</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </MobileFlowCard>
 
-            <div className="rounded-[20px] border border-slate-800 bg-[#071226]/95 p-4">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-orange-300">
-                Final Notes
-              </p>
-              <textarea
-                name="notes"
-                rows={3}
-                placeholder="Tell us about your campaign goals, script style, calling hours, escalation rules, etc."
-                value={formData.notes}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
-              />
-            </div>
+                <MobileFlowConnector delay={0.5} />
 
-            <Link href="/playground/customise-agent#start-trial" className="block">
-              <button className="w-full rounded-xl bg-orange-500 px-3 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400">
-                Continue Setup
-              </button>
-            </Link>
+                <MobileFlowCard title="Team Size" delay={0.14}>
+                  <select
+                    name="teamSize"
+                    value={formData.teamSize}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select team size</option>
+                    <option value="1-10">1-10</option>
+                    <option value="11-50">11-50</option>
+                    <option value="51-200">51-200</option>
+                    <option value="200+">200+</option>
+                  </select>
+                </MobileFlowCard>
+
+                <MobileFlowConnector delay={0.6} />
+
+                <MobileFlowCard title="Primary Use Case" delay={0.16}>
+                  <select
+                    name="useCase"
+                    value={formData.useCase}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select use case</option>
+                    <option value="Lead Qualification">Lead Qualification</option>
+                    <option value="Appointment Booking">Appointment Booking</option>
+                    <option value="Follow-ups">Follow-ups</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Collections">Collections</option>
+                  </select>
+                </MobileFlowCard>
+
+                <MobileFlowConnector delay={0.7} />
+
+                <MobileFlowCard title="Campaign Type" delay={0.18}>
+                  <select
+                    name="campaignType"
+                    value={formData.campaignType}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select campaign type</option>
+                    <option value="Outbound Sales">Outbound Sales</option>
+                    <option value="Inbound Support">Inbound Support</option>
+                    <option value="Reminder Calls">Reminder Calls</option>
+                    <option value="Survey / Feedback">Survey / Feedback</option>
+                  </select>
+                </MobileFlowCard>
+
+                <MobileFlowConnector delay={0.8} />
+
+                <MobileFlowCard title="Monthly Call Volume" delay={0.2}>
+                  <select
+                    name="callVolume"
+                    value={formData.callVolume}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  >
+                    <option value="">Select call volume</option>
+                    <option value="0-1,000">0-1,000</option>
+                    <option value="1,000-10,000">1,000-10,000</option>
+                    <option value="10,000-50,000">10,000-50,000</option>
+                    <option value="50,000+">50,000+</option>
+                  </select>
+                </MobileFlowCard>
+
+                <MobileFlowConnector delay={0.9} />
+
+                <MobileFlowCard title="CRM / Lead Source" delay={0.22}>
+                  <input
+                    name="crm"
+                    type="text"
+                    placeholder="Eg. HubSpot, Zoho, Salesforce"
+                    value={formData.crm}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  />
+                </MobileFlowCard>
+
+                <MobileFlowConnector delay={1} />
+
+                <MobileFlowCard title="Final Notes" delay={0.24}>
+                  <textarea
+                    name="notes"
+                    rows={3}
+                    placeholder="Tell us about your campaign goals, script style, calling hours, escalation rules, etc."
+                    value={formData.notes}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-orange-400"
+                  />
+                </MobileFlowCard>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  className="relative z-10 mt-5"
+                >
+                  <Link href="/playground/customise-agent#start-trial" className="block">
+                    <button className="w-full rounded-xl bg-orange-500 px-3 py-3 text-sm font-semibold text-slate-950 transition hover:bg-orange-400">
+                      Continue Setup
+                    </button>
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -843,7 +890,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="h-full min-h-[420px] rounded-2xl border border-slate-600 bg-slate-900/50 p-4"
+              className="h-full min-h-[340px] rounded-2xl border border-slate-600 bg-slate-900/50 p-4 sm:min-h-[420px]"
             >
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-orange-300">
@@ -857,7 +904,7 @@ export default function Home() {
 
               <p className="mb-2 text-xs text-slate-300">Frequently Asked Questions</p>
 
-              <div className="faq-scroll h-[300px] overflow-hidden rounded-xl border border-slate-800 bg-slate-950/50 px-3 py-2">
+              <div className="faq-scroll h-[240px] overflow-hidden rounded-xl border border-slate-800 bg-slate-950/50 px-3 py-2 sm:h-[300px]">
                 <div className="faq-track flex flex-col gap-3">
                   {[
                     {
@@ -939,7 +986,7 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="news-box relative min-h-[800px] overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-0"
+            className="news-box relative min-h-[560px] overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-0 md:min-h-[700px] lg:min-h-[800px]"
           >
             <div className="news-header relative z-10 border-b border-slate-800 px-6 py-5">
               <div className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-300">
@@ -956,7 +1003,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="news-viewport relative h-[620px] overflow-hidden px-6 py-4">
+            <div className="news-viewport relative h-[420px] overflow-hidden px-4 py-4 sm:h-[520px] sm:px-6 lg:h-[620px]">
               <div className="news-fade-top pointer-events-none absolute left-0 right-0 top-0 z-[1] h-14" />
               <div className="news-fade-bottom pointer-events-none absolute bottom-0 left-0 right-0 z-[1] h-12" />
 
