@@ -103,88 +103,132 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950 text-slate-50">
       <HeroSection />
 
-      <section id="packages" className="border-t border-slate-800 px-4 py-16">
-        <motion.div
-          className="mx-auto max-w-6xl"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
+      <section id="packages" className="border-t border-slate-800 px-4 py-16 sm:px-6 lg:px-8">
+  <motion.div
+    className="mx-auto max-w-6xl"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.2 }}
+  >
+    <div className="max-w-2xl">
+      <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
+        Voice AI Plans Built for Enterprise Scale
+      </h2>
+      <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base">
+        Start with a pilot deployment, then scale AI voice agents across sales,
+        support, BPO and scheduling workflows.
+      </p>
+    </div>
+
+    <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {/* Starter */}
+      <motion.div
+        whileHover={{ y: -6, scale: 1.01 }}
+        transition={{ duration: 0.25 }}
+        className="flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm"
+      >
+        <span className="mb-3 inline-flex w-fit rounded-full bg-orange-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-300">
+          Pilot-Ready
+        </span>
+
+        <h3 className="text-xl font-semibold text-white">Starter</h3>
+
+        <p className="mt-3 text-sm leading-6 text-slate-300">
+          Perfect for enterprises running a proof-of-concept or validating Voice
+          AI on a specific campaign.
+        </p>
+
+        <ul className="mt-5 space-y-3 text-sm text-slate-300">
+          <li>• Up to 2 concurrent AI voice agents</li>
+          <li>• Single campaign deployment</li>
+          <li>• Inbound or outbound call support</li>
+          <li>• Basic call analytics & transcripts</li>
+          <li>• CRM-ready plug & play setup</li>
+        </ul>
+
+        <Link
+          href="#playground"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-slate-800"
         >
-          <h2 className="text-2xl font-semibold md:text-3xl">
-            Voice AI Plans Built for Enterprise Scale
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm text-slate-300 md:text-base">
-            Start with a pilot deployment, then scale AI voice agents across sales,
-            support, BPO and scheduling workflows.
-          </p>
+          Start Pilot
+        </Link>
+      </motion.div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <span className="mb-2 inline-flex w-fit rounded-full bg-orange-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-300">
-                PILOT-READY
-              </span>
-              <h3 className="text-xl font-semibold">Starter</h3>
-              <p className="mt-2 text-sm text-slate-300">
-                Perfect for enterprises running a proof-of-concept or validating Voice
-                AI on a specific campaign.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-slate-300">
-                <li>• Up to 2 concurrent AI voice agents</li>
-                <li>• Single campaign deployment</li>
-                <li>• Inbound or outbound call support</li>
-                <li>• Basic call analytics & transcripts</li>
-                <li>• CRM-ready plug & play setup</li>
-              </ul>
-              <button className="mt-6 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-100 transition hover:bg-slate-900">
-                Start Pilot
-              </button>
-            </div>
+       
+      <motion.div
+        whileHover={{ y: -6, scale: 1.01 }}
+        transition={{ duration: 0.25 }}
+        className="relative flex h-full flex-col rounded-2xl border border-orange-500/60 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)] backdrop-blur-sm"
+      >
+        <div className="absolute -top-3 left-6">
+          <span className="inline-flex rounded-full bg-orange-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-950">
+            Most Popular
+          </span>
+        </div>
 
-            <div className="flex flex-col rounded-2xl border border-orange-500/60 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)]">
-              <span className="mb-2 inline-flex w-fit rounded-full bg-orange-500/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-300">
-                RECOMMENDED
-              </span>
-              <h3 className="text-xl font-semibold">Growth</h3>
-              <p className="mt-2 text-sm text-slate-300">
-                Built for teams scaling AI-led calling across multiple campaigns and
-                workflows.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-slate-300">
-                <li>• Up to 10 concurrent AI voice agents</li>
-                <li>• Multiple campaigns & call queues</li>
-                <li>• CRM sync & intelligent routing</li>
-                <li>• Advanced analytics & transcripts</li>
-                <li>• Sales, support & BPO workflows</li>
-              </ul>
-              <button className="mt-6 rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-orange-400">
-                Book Pricing Call
-              </button>
-            </div>
+        <span className="mb-3 mt-3 inline-flex w-fit rounded-full bg-orange-500/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-300">
+          Recommended
+        </span>
 
-            <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <span className="mb-2 inline-flex w-fit rounded-full bg-slate-800 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
-                CUSTOM
-              </span>
-              <h3 className="text-xl font-semibold">Enterprise</h3>
-              <p className="mt-2 text-sm text-slate-300">
-                Designed for high-volume teams requiring custom workflows and enterprise
-                compliance.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-slate-300">
-                <li>• Unlimited AI voice agents</li>
-                <li>• Custom workflows & playbooks</li>
-                <li>• Advanced analytics & reporting</li>
-                <li>• Custom integrations & SLAs</li>
-                <li>• Enterprise security & compliance</li>
-              </ul>
-              <button className="mt-6 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-100 transition hover:bg-slate-900">
-                Talk to Enterprise Team
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+        <h3 className="text-xl font-semibold text-white">Growth</h3>
+
+        <p className="mt-3 text-sm leading-6 text-slate-300">
+          Built for teams scaling AI-led calling across multiple campaigns and
+          workflows.
+        </p>
+
+        <ul className="mt-5 space-y-3 text-sm text-slate-300">
+          <li>• Up to 10 concurrent AI voice agents</li>
+          <li>• Multiple campaigns & call queues</li>
+          <li>• CRM sync & intelligent routing</li>
+          <li>• Advanced analytics & transcripts</li>
+          <li>• Sales, support & BPO workflows</li>
+        </ul>
+
+        <Link
+          href="/demo"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-orange-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-orange-400"
+        >
+          Book Pricing Call
+        </Link>
+      </motion.div>
+
+      {/* Enterprise */}
+      <motion.div
+        whileHover={{ y: -6, scale: 1.01 }}
+        transition={{ duration: 0.25 }}
+        className="flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm md:col-span-2 xl:col-span-1"
+      >
+        <span className="mb-3 inline-flex w-fit rounded-full bg-slate-800 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+          Custom
+        </span>
+
+        <h3 className="text-xl font-semibold text-white">Enterprise</h3>
+
+        <p className="mt-3 text-sm leading-6 text-slate-300">
+          Designed for high-volume teams requiring custom workflows and enterprise
+          compliance.
+        </p>
+
+        <ul className="mt-5 space-y-3 text-sm text-slate-300">
+          <li>• Unlimited AI voice agents</li>
+          <li>• Custom workflows & playbooks</li>
+          <li>• Advanced analytics & reporting</li>
+          <li>• Custom integrations & SLAs</li>
+          <li>• Enterprise security & compliance</li>
+        </ul>
+
+        <Link
+          href="/demo"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-slate-800"
+        >
+          Talk to Enterprise Team
+        </Link>
+      </motion.div>
+    </div>
+  </motion.div>
+</section>
 
       <section id="features" className="border-t border-slate-800 px-4 py-16">
         <motion.div
@@ -539,7 +583,7 @@ export default function Home() {
             </p>
             <div className="mt-6">
               <p className="text-sm font-semibold text-white">— Deepak Pandey</p>
-              <p className="text-sm text-orange-300">Founder, Anturon</p>
+              <p className="text-sm text-orange-300">Co-Founder, Anturon</p>
             </div>
           </motion.div>
         </div>

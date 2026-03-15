@@ -43,7 +43,7 @@ export default function HeroSection() {
           className="relative z-10 flex-1"
         >
           <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-orange-500/40 bg-orange-500/10 px-3 py-1 text-[10px] font-medium text-orange-300 sm:text-xs">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-400" />
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-400" />
             <span className="whitespace-normal sm:whitespace-nowrap">
               LIVE | Enterprise Voice AI - Inbound · Outbound · Support · BPO
             </span>
@@ -74,7 +74,7 @@ export default function HeroSection() {
 
             <div className="flex w-full flex-col items-start sm:w-auto">
               <Link
-                href="#pilot"
+                href="#playground"
                 className="inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-900/60 sm:w-auto sm:px-9 sm:text-base"
               >
                 Start Pilot
