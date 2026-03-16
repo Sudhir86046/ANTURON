@@ -126,7 +126,7 @@ export default function Home() {
       <motion.div
         whileHover={{ y: -6, scale: 1.01 }}
         transition={{ duration: 0.25 }}
-        className="flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm"
+         className="relative flex h-full flex-col rounded-2xl border border-orange-500/10 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)] backdrop-blur-sm"
       >
         <span className="mb-3 inline-flex w-fit rounded-full bg-orange-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-300">
           Pilot-Ready
@@ -149,7 +149,7 @@ export default function Home() {
 
         <Link
           href="#playground"
-          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-slate-800"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-orange-500"
         >
           Start Pilot
         </Link>
@@ -159,7 +159,7 @@ export default function Home() {
       <motion.div
         whileHover={{ y: -6, scale: 1.01 }}
         transition={{ duration: 0.25 }}
-        className="relative flex h-full flex-col rounded-2xl border border-orange-500/60 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)] backdrop-blur-sm"
+        className="relative flex h-full flex-col rounded-2xl border border-orange-500/10 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)] backdrop-blur-sm"
       >
         <div className="absolute -top-3 left-6">
           <span className="inline-flex rounded-full bg-orange-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-950">
@@ -188,7 +188,7 @@ export default function Home() {
 
         <Link
           href="/demo"
-          className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-orange-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-orange-400"
+           className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-orange-500"
         >
           Book Pricing Call
         </Link>
@@ -198,9 +198,9 @@ export default function Home() {
       <motion.div
         whileHover={{ y: -6, scale: 1.01 }}
         transition={{ duration: 0.25 }}
-        className="flex h-full flex-col rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm md:col-span-2 xl:col-span-1"
+        className="relative flex h-full flex-col rounded-2xl border border-orange-500/10 bg-slate-900/60 p-6 shadow-[0_0_40px_rgba(248,150,30,0.2)] backdrop-blur-sm"
       >
-        <span className="mb-3 inline-flex w-fit rounded-full bg-slate-800 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
+        <span className="mb-3 inline-flex w-fit rounded-full bg-orange-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-300">
           Custom
         </span>
 
@@ -221,7 +221,7 @@ export default function Home() {
 
         <Link
           href="/demo"
-          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-slate-800"
+          className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-100 transition hover:border-orange-400 hover:bg-orange-500"
         >
           Talk to Enterprise Team
         </Link>

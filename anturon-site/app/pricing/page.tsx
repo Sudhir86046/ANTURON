@@ -19,7 +19,7 @@ const plans = [
     ],
     buttonText: "Start Pilot",
     buttonStyle:
-      "border border-slate-700 text-slate-100 hover:bg-slate-900",
+      "border border-slate-700 text-slate-100 hover:bg-orange-500",
     badgeStyle: "bg-orange-500/10 text-orange-300",
     highlight: false,
     microcopy: "Ideal for first deployment and internal validation.",
@@ -38,8 +38,8 @@ const plans = [
     ],
     buttonText: "Book a Pricing Call",
     buttonStyle:
-      "bg-orange-500 text-slate-950 hover:bg-orange-400",
-    badgeStyle: "bg-orange-500/15 text-orange-300",
+      "border border-slate-700 text-slate-100 hover:bg-orange-500",
+    badgeStyle: "bg-orange-500/10 text-orange-300",
     highlight: true,
     microcopy: "Best for revenue teams ready to scale AI operations.",
   },
@@ -57,8 +57,8 @@ const plans = [
     ],
     buttonText: "Talk to Enterprise Team",
     buttonStyle:
-      "border border-slate-700 text-slate-100 hover:bg-slate-900",
-    badgeStyle: "bg-slate-800 text-slate-300",
+      "border border-slate-700 text-slate-100 hover:bg-orange-500",
+    badgeStyle: "bg-orange-500/10 text-orange-300",
     highlight: false,
     microcopy: "For complex environments and multi-team rollout.",
   },
