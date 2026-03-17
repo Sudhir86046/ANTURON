@@ -24,15 +24,16 @@ export default function DemoPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      console.log("Submitting demo form:", demoForm);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-      const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL;
+      if (!apiUrl) {
+        throw new Error("NEXT_PUBLIC_API_URL is not defined");
+      }
 
       const res = await fetch(`${apiUrl}/api/demo-request`, {
         method: "POST",
@@ -42,22 +43,17 @@ export default function DemoPage() {
         body: JSON.stringify(demoForm),
       });
 
-      const contentType = res.headers.get("content-type");
+      let data: any = null;
+
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error("Server did not return valid JSON");
+      }
 
       if (!res.ok) {
-        const errorText = await res.text();
-        console.error("Server error response:", errorText);
-        throw new Error(`Request failed with status ${res.status}`);
+        throw new Error(data?.message || `Request failed with status ${res.status}`);
       }
-
-      if (!contentType || !contentType.includes("application/json")) {
-        const text = await res.text();
-        console.error("Non-JSON response received:", text);
-        throw new Error("Server did not return JSON");
-      }
-
-      const data = await res.json();
-      console.log("Demo response:", data);
 
       if (data.success) {
         setShowPopup(true);
@@ -71,9 +67,9 @@ export default function DemoPage() {
       } else {
         alert(data.message || "Something went wrong");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Demo submit error:", error);
-      alert("Form submit failed. Please check backend/API connection.");
+      alert(error.message || "Form submit failed. Please check backend/API connection.");
     } finally {
       setLoading(false);
     }
