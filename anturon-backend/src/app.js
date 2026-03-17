@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 // ✅ FIXED ROUTES
-app.use("/api/dashboard-request", dashboardRoutes);
-app.use("/api/demo-request", demoRoutes);
+app.use("/api/v1/dashboard-request", dashboardRoutes);
+app.use("/api/v1/demo-request", demoRoutes);
 
 module.exports = app;

@@ -35,7 +35,7 @@ export default function DemoPage() {
         throw new Error("NEXT_PUBLIC_API_URL is not defined");
       }
 
-      const res = await fetch(`${apiUrl}/api/demo-request`, {
+      const res = await fetch(`${apiUrl}/api/v1/demo-request`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
