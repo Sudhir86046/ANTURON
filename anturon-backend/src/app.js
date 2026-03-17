@@ -13,7 +13,8 @@ app.get("/", (req, res) => {
   res.send("Anturon backend is running");
 });
 
-app.use("/api", dashboardRoutes);
-app.use("/api", demoRoutes);
+// ✅ FIXED ROUTES
+app.use("/api/dashboard-request", dashboardRoutes);
+app.use("/api/demo-request", demoRoutes);
 
 module.exports = app;
