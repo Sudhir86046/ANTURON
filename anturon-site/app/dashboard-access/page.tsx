@@ -33,7 +33,7 @@ export default function DashboardAccessPage() {
 
     try {
       const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "https://api.anturon.io";
+        process.env.NEXT_PUBLIC_API_URL;
 
       const res = await fetch(`${apiUrl}/api/dashboard-request`, {
         method: "POST",

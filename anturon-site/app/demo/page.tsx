@@ -32,7 +32,7 @@ export default function DemoPage() {
       console.log("Submitting demo form:", demoForm);
 
       const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://13.63.125.236:5000";
+        process.env.NEXT_PUBLIC_API_URL;
 
       const res = await fetch(`${apiUrl}/api/demo-request`, {
         method: "POST",
