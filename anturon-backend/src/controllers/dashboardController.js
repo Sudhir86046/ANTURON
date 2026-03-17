@@ -36,6 +36,8 @@ const createDashboardRequest = async (req, res) => {
       data: newRequest,
     });
   } catch (error) {
+    console.error("Dashboard request error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Server error",
