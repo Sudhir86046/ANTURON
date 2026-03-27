@@ -383,9 +383,11 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <button className="rounded-full bg-slate-100/10 px-3 py-2 text-[11px] font-medium text-slate-100 transition hover:bg-slate-100/15">
-                View call dashboard
-              </button>
+              <Link href="/dashboard-access">
+                 <button className="rounded-full bg-slate-100/10 px-3 py-2 text-[11px] font-medium text-slate-100 transition hover:bg-orange-100/15">
+                  View call dashboard
+                 </button>
+              </Link>
             </div>
           </div>
         </motion.div>
